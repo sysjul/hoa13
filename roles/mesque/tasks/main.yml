@@ -1,0 +1,7 @@
+#This is the main.yml file for installing Message Queue
+
+
+- name: Configuring rabbitmq-server
+  shell: |
+    rabbitmqctl add_user openstack server54321
+    rabbitmqctl set_permissions openstack ".*" ".*" ".*"

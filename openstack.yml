@@ -1,0 +1,23 @@
+#This is the main playbook for openstack installation
+
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install Updates (Ubuntu)
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  roles:
+    - role: ntp
+    - role: openstack
+    - role: sql
+    - role: mesque
+    - role: memcache
+    - role: etcd
